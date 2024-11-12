@@ -81,28 +81,28 @@ int Menu()
 			AddToEnd(&head);
 			break;
 		case 'A':
-			printf("Enter surname: ");
+			printf("\nEnter the last name after which the new person will be added: ");
 			scanf(" %s", surname);
 			AddAfter(&head, surname);
 			break;
 		case 'B':
-			printf("Enter surname: ");
+			printf("\nEnter the last name before which the new person will be added ");
 			scanf(" %s", surname);
 			AddBefore(&head, surname);
 			break;
 		case 'D':
-			printf("Enter surname: ");
+			printf("\nEnter the last name of the person you want to delete: ");
 			scanf(" %s", surname);
 			DeletePerson(&head, surname);
 			break;
 		case 'F':
-			printf("Enter surname: ");
+			printf("\nEnter the last name of the person you want to find");
 			scanf(" %s", surname);
 			sname = FindBySurname(&head, surname);
 			if (sname != NULL)
-				printf("Person founded.\n");
+				printf("Person found.\n");
 			else
-				printf("Person not founded.\n");
+				printf("Person not found.\n");
 			break;
 		case 'P':
 			PrintList(&head);
@@ -137,13 +137,13 @@ Position CreatePerson()
 	Position newPerson = (Position)malloc(sizeof(Person));
 	if (newPerson == NULL)
 	{
-		//ispis
+		printf("Malloc failed!\n");
 		return NULL;
 	}
 
 	newPerson->next = NULL;
+	printf("Enter name, surname and birth year: ");
 	scanf(" %s %s %d", newPerson->name, newPerson->lastName, &newPerson->birthYear);
-
 
 	return newPerson;
 }
@@ -227,7 +227,8 @@ int AddBefore(Position head, const char* surname)
 Position FindBySurname(Position head, const char* surname)
 {
 	Position temp = head->next;
-	//if(temp==NULL)
+	if (temp == NULL)
+		return -1;
 
 	while (temp != NULL && strcmp(temp->lastName, surname) != 0)
 	{
@@ -253,9 +254,10 @@ int PrintList(Position head)
 {
 	Position temp = head->next;
 
+	printf("\n");
 	while (temp != NULL)
 	{
-		printf("Name: %s\n", temp->lastName);
+		printf("Person:  %s %s %d\n", temp->name, temp->lastName, temp->birthYear);
 		temp = temp->next;
 	}
 	
