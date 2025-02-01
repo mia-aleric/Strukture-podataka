@@ -1,0 +1,6 @@
+2019-02-01
+Ananas 1 4
+Igracka 2 3
+Knjiga 1 1.5
+Jabuka 10 2
+Zvake 2 0.5
